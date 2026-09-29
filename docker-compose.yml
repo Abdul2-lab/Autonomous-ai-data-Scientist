@@ -1,0 +1,33 @@
+# Local/staging orchestration. For production, point DATABASE_URL at a managed
+# PostgreSQL instance instead of the bundled SQLite volume, and set OPENAI_API_KEY
+# via your platform's secret manager rather than this file.
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - DATABASE_URL=sqlite:////app/data/app.db
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - LLM_MODEL=${LLM_MODEL:-gpt-4o-mini}
+      - FRONTEND_ORIGIN=http://localhost:5173
+      - MAX_UPLOAD_SIZE_MB=50
+    volumes:
+      - backend_data:/app/data
+      - backend_models:/app/models_store
+      - backend_reports:/app/reports_store
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  backend_data:
+  backend_models:
+  backend_reports:

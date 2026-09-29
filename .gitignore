@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+*.egg-info/
+
+# Data & artifacts (generated at runtime -- never commit real user data)
+backend/data/uploads/*
+backend/data/processed/*
+backend/models_store/*
+backend/reports_store/*
+backend/logs/*
+!backend/data/uploads/.gitkeep
+!backend/data/processed/.gitkeep
+!backend/models_store/.gitkeep
+!backend/reports_store/.gitkeep
+backend/data/*.db
+backend/.pytest_cache/
+
+# Env
+.env
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+
+# OS
+.DS_Store
+Thumbs.db

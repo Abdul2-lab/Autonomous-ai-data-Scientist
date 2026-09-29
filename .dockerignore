@@ -1,0 +1,12 @@
+**/__pycache__
+**/*.pyc
+**/venv
+**/node_modules
+**/dist
+**/.env
+**/data/uploads/*
+**/data/processed/*
+**/models_store/*
+**/reports_store/*
+**/logs/*
+**/.pytest_cache
